@@ -1,6 +1,8 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { useState } from "react";
+import { motion, Variants, AnimatePresence } from "framer-motion";
+import { ShieldCheck, X, FileText, CheckCircle } from "lucide-react";
 
 const registrations = [
   {
@@ -41,8 +43,8 @@ const registrations = [
         <path d="M22,35 C30,30 40,25 50,28 C60,25 70,30 78,35 C74,55 64,75 50,82 C36,75 26,55 22,35 Z" fill="none" stroke="currentColor" strokeWidth="2" />
         
         {/* Five Rivers Wave / Crown */}
-        <path d="M32,45 C38,40 44,45 50,40 C56,45 62,40 68,45" fill="none" stroke="#4A90D9" strokeWidth="2" />
-        <path d="M32,52 C38,47 44,52 50,47 C56,52 62,47 68,52" fill="none" stroke="#4A90D9" strokeWidth="2" />
+        <path d="M32,45 C38,40 44,45 50,40 C56,45 62,40 68,45" fill="none" stroke="var(--light-blue)" strokeWidth="2" />
+        <path d="M32,52 C38,47 44,52 50,47 C56,52 62,47 68,52" fill="none" stroke="var(--light-blue)" strokeWidth="2" />
         
         {/* Star Crescent */}
         <path d="M46,65 A6,6 0 1,1 54,65 A5,5 0 1,0 46,65 Z" fill="currentColor" />
@@ -54,7 +56,7 @@ const registrations = [
   },
   {
     abbreviation: "LCCI",
-    fullName: "Lahore Chamber of Commerce",
+    fullName: "Lahore Chamber of Commerce & Industry (Since 20/03/2012)",
     logo: (
       <svg viewBox="0 0 100 100" className="card-logo-svg">
         <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="2.5" />
@@ -74,16 +76,16 @@ const registrations = [
   },
   {
     abbreviation: "POEPA",
-    fullName: "Pak Overseas Promoters Assoc.",
+    fullName: "Pakistan Overseas Employment Promoters Association (LHR-144)",
     logo: (
       <svg viewBox="0 0 100 100" className="card-logo-svg">
         <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="2.5" />
-        <circle cx="50" cy="44" r="20" fill="none" stroke="#4A90D9" strokeWidth="1.5" />
+        <circle cx="50" cy="44" r="20" fill="none" stroke="var(--light-blue)" strokeWidth="1.5" />
         
         {/* Globe Grid inside Association Logo */}
-        <path d="M30,44 A20,20 0 0,0 70,44 Z" fill="none" stroke="#4A90D9" strokeWidth="1.5" />
-        <path d="M30,44 A20,20 0 0,1 70,44 Z" fill="none" stroke="#4A90D9" strokeWidth="1.5" />
-        <line x1="50" y1="24" x2="50" y2="64" stroke="#4A90D9" strokeWidth="1.5" />
+        <path d="M30,44 A20,20 0 0,0 70,44 Z" fill="none" stroke="var(--light-blue)" strokeWidth="1.5" />
+        <path d="M30,44 A20,20 0 0,1 70,44 Z" fill="none" stroke="var(--light-blue)" strokeWidth="1.5" />
+        <line x1="50" y1="24" x2="50" y2="64" stroke="var(--light-blue)" strokeWidth="1.5" />
         
         {/* Helping hands holding globe */}
         <path d="M22,65 Q35,55 45,63 C48,65 52,65 55,63 Q65,55 78,65 L70,78 Q50,70 30,78 Z" fill="currentColor" />
@@ -94,7 +96,7 @@ const registrations = [
   },
   {
     abbreviation: "LEI Worldwide",
-    fullName: "Legal Entity Identifier",
+    fullName: "LEI Worldwide — Legal Entity Identifier",
     logo: (
       <svg viewBox="0 0 100 100" className="card-logo-svg">
         <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="2.5" />
@@ -106,8 +108,8 @@ const registrations = [
         <line x1="40" y1="56" x2="60" y2="56" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
         
         {/* Tech verification checkmark */}
-        <circle cx="50" cy="65" r="9" fill="none" stroke="#4A90D9" strokeWidth="2" />
-        <path d="M47,65 L49,68 L53,62" fill="none" stroke="#4A90D9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="50" cy="65" r="9" fill="none" stroke="var(--light-blue)" strokeWidth="2" />
+        <path d="M47,65 L49,68 L53,62" fill="none" stroke="var(--light-blue)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         
         <text x="50" y="24" fontSize="8" fontWeight="black" textAnchor="middle" fill="currentColor" letterSpacing="1.2">LEI</text>
         <text x="50" y="82" fontSize="5.5" fontWeight="bold" textAnchor="middle" fill="currentColor" letterSpacing="0.8">WORLDWIDE</text>
@@ -135,8 +137,10 @@ const cardVariants: Variants = {
 };
 
 export default function Registrations() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
-    <section id="registrations" className="section-padding" style={{ backgroundColor: "var(--dark-navy)" }}>
+    <section id="credentials" className="section-padding" style={{ backgroundColor: "var(--dark-navy)" }}>
       <div className="container-width">
         
         {/* Centered Section Header */}
@@ -146,16 +150,19 @@ export default function Registrations() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5 }}
-            className="text-gradient-gold"
+            className="text-gradient-gold text-center"
           >
-            REGISTERED FROM
+            REGISTERED & CERTIFIED FROM
           </motion.h2>
+          <p className="text-gray-400 font-body text-base mt-2 text-center max-w-2xl mx-auto">
+            Verified and licensed by the highest regulatory authorities in Pakistan
+          </p>
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="divider-lines"
+            className="divider-lines justify-center"
           >
             <span>REGULATORY AUTHORITIES</span>
           </motion.div>
@@ -216,19 +223,220 @@ export default function Registrations() {
             </motion.div>
           ))}
         </motion.div>
-        
-        {/* Verification Alert Footer */}
+
+        {/* Official Licence Highlight Banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, type: "spring", stiffness: 80 }}
+          className="mt-16 w-full max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl relative"
+          style={{
+            background: "linear-gradient(135deg, rgba(11,31,92,0.85) 0%, rgba(6,14,58,0.95) 100%)",
+            border: "1px solid rgba(245,197,24,0.35)",
+            boxShadow: "0 10px 40px rgba(0, 0, 0, 0.4), 0 0 15px rgba(245,197,24,0.08)",
+          }}
+        >
+          {/* Subtle gold aura background */}
+          <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-gradient-to-l from-[rgba(245,197,24,0.05)] to-transparent rounded-full filter blur-3xl pointer-events-none" />
+          
+          <div className="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-8 justify-between relative z-10">
+            <div className="flex gap-4 items-start text-left">
+              <div className="bg-[rgba(245,197,24,0.1)] p-4 rounded-2xl border border-[rgba(245,197,24,0.2)] text-accent-gold mt-1 shrink-0">
+                <ShieldCheck size={32} style={{ filter: "drop-shadow(0 0 8px rgba(245,197,24,0.4))" }} />
+              </div>
+              <div>
+                <h3 className="text-white font-display font-black text-xl lg:text-2xl tracking-wide flex items-center gap-2">
+                  🏛 Government of Pakistan — Official Licence
+                </h3>
+                <p className="text-accent-gold font-display font-bold text-base lg:text-lg mt-0.5 tracking-wider">
+                  Overseas Employment Promoter&apos;s Licence No. 2671 / LHR
+                </p>
+                <div className="flex flex-wrap gap-x-4 gap-y-1 text-gray-400 font-body text-xs lg:text-sm mt-2">
+                  <span><strong>Issued:</strong> 22/01/2009</span>
+                  <span className="hidden sm:inline">•</span>
+                  <span><strong>Authorizing:</strong> Iftikhar Ahmed</span>
+                  <span className="hidden sm:inline">•</span>
+                  <span><strong>Agency:</strong> Mirza Gee Manpower Services</span>
+                </div>
+              </div>
+            </div>
+
+            {/* View Licence Certificate Button */}
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="btn-primary flex items-center gap-2 whitespace-nowrap shrink-0 shadow-lg"
+              style={{
+                fontSize: "1rem",
+                padding: "10px 24px",
+              }}
+            >
+              <FileText size={18} />
+              View Licence Certificate
+            </button>
+          </div>
+        </motion.div>
+
+        {/* NTN Info Strip */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="w-full max-w-4xl mx-auto mt-6 bg-[rgba(6,14,58,0.4)] border border-[rgba(255,255,255,0.05)] rounded-2xl py-3 px-6 flex flex-wrap gap-x-6 gap-y-2 justify-center items-center text-xs lg:text-sm font-body text-gray-400"
+        >
+          <span className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent-gold" />
+            <strong>NTN No:</strong> 3168005-4
+          </span>
+          <span className="hidden md:inline text-gray-600">|</span>
+          <span className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-light-blue" />
+            <strong>LCCI Membership No:</strong> 76647-A
+          </span>
+          <span className="hidden md:inline text-gray-600">|</span>
+          <span className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent-gold" />
+            <strong>POEPA Membership No:</strong> LHR-144
+          </span>
+        </motion.div>
+
+        {/* Bottom live check text */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="text-center text-white/40 text-xs md:text-sm tracking-wide mt-12 uppercase"
+          className="text-center text-white/30 text-xs tracking-wide mt-10 uppercase"
         >
-          ✅ All registrations are live, active, and audit-checked by the federal and provincial bodies of Pakistan.
+          ✅ All credentials are live, active, and fully compliant with the Ministry of Overseas Pakistanis & HRD.
         </motion.p>
-
       </div>
+
+      {/* Modern Certificate Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsModalOpen(false)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md overflow-y-auto"
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 30, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.9, y: 30, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 350 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-2xl bg-[#fdfaf2] rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden text-neutral-800 p-6 md:p-8"
+              style={{
+                border: "12px double #D4A400",
+                boxShadow: "0 0 0 4px #0B1F5C, 0 10px 50px rgba(0,0,0,0.8)",
+              }}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-4 right-4 text-neutral-500 hover:text-neutral-900 transition-colors p-1.5 rounded-full hover:bg-neutral-200"
+              >
+                <X size={20} />
+              </button>
+
+              {/* Certificate Inner Design */}
+              <div className="flex flex-col items-center text-center font-display border-4 border-double border-[#0B1F5C]/20 p-6 rounded-xl">
+                
+                {/* Crest Header */}
+                <div className="flex flex-col items-center mb-4">
+                  {/* Government Crest representation in SVG */}
+                  <svg viewBox="0 0 100 100" className="w-16 h-16 text-[#0B1F5C] mb-2" fill="currentColor">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="2.5" />
+                    <ellipse cx="50" cy="45" rx="20" ry="12" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                    <path d="M50,15 L50,22 M50,68 L50,82" stroke="currentColor" strokeWidth="2" />
+                    {/* Crescent & Star */}
+                    <path d="M46,45 A8,8 0 1,1 55,42 A7,7 0 1,0 46,45 Z" fill="currentColor" />
+                    <text x="50" y="81" fontSize="6.5" fontWeight="bold" textAnchor="middle" fill="currentColor" letterSpacing="0.5">O.E.P.</text>
+                  </svg>
+                  <h2 className="text-xl md:text-2xl font-black text-[#0B1F5C] uppercase tracking-wider leading-none">
+                    Government of Pakistan
+                  </h2>
+                  <p className="text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-widest mt-1">
+                    Ministry of Overseas Pakistanis & Human Resource Development
+                  </p>
+                  <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider leading-none mt-0.5">
+                    Bureau of Emigration & Overseas Employment
+                  </p>
+                </div>
+
+                <div className="w-32 h-[1px] bg-[#D4A400] my-2" />
+
+                {/* Certificate Title */}
+                <h4 className="text-lg md:text-xl font-bold italic text-[#D4A400] font-arabic my-1">
+                  Overseas Employment Promoter&apos;s Licence
+                </h4>
+                
+                {/* Certificate Main Text */}
+                <p className="text-[11px] md:text-xs text-neutral-600 font-body leading-relaxed max-w-md mt-4">
+                  This is to officially certify that the regulatory authorities of the Government of Pakistan have granted, approved and issued this license under the Emigration Ordinance, 1979, to:
+                </p>
+
+                {/* Licensee Company name */}
+                <h3 className="text-2xl md:text-3xl font-black text-[#0B1F5C] font-display uppercase tracking-wide mt-4">
+                  Mirza Gee Manpower Services
+                </h3>
+
+                {/* License Details Block */}
+                <div className="grid grid-cols-2 gap-x-6 gap-y-3 w-full max-w-sm bg-[#faf6ed] border border-[#eaddc4] rounded-2xl p-4 mt-5 text-left font-body text-xs text-neutral-700">
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-neutral-400">Licence Number</span>
+                    <div className="font-display font-bold text-sm text-[#0B1F5C] mt-0.5">MPD/2671/LHR</div>
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-neutral-400">Official Status</span>
+                    <div className="font-display font-bold text-sm text-[#0B1F5C] mt-0.5 flex items-center gap-1">
+                      <CheckCircle size={14} className="text-green-600" />
+                      Active / Verified
+                    </div>
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-neutral-400">Authorised Promoter</span>
+                    <div className="font-display font-bold text-sm text-neutral-800 mt-0.5">Iftikhar Ahmed Mirza</div>
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-neutral-400">Date of Issue</span>
+                    <div className="font-display font-bold text-sm text-neutral-800 mt-0.5">22nd January, 2009</div>
+                  </div>
+                </div>
+
+                {/* Footer seal & signature */}
+                <div className="flex justify-between items-end w-full mt-10 font-body">
+                  <div className="flex flex-col items-center">
+                    {/* Signed seal placeholder */}
+                    <div className="w-16 h-8 border-b-2 border-neutral-400" />
+                    <span className="text-[9px] text-neutral-500 uppercase mt-1 tracking-wider">Director General</span>
+                  </div>
+                  
+                  {/* Decorative Golden Circular Badge Seal */}
+                  <div className="relative w-16 h-16 flex items-center justify-center shrink-0">
+                    {/* Spiky Seal Outer */}
+                    <svg viewBox="0 0 100 100" className="absolute w-full h-full text-[#D4A400] animate-spin-slow">
+                      <polygon points="50,5 54,16 63,10 64,22 74,18 72,30 81,28 77,39 85,41 78,50 85,59 77,61 81,72 72,70 74,82 64,78 63,90 54,84 50,95 46,84 37,90 36,78 26,82 28,70 19,72 23,61 15,59 22,50 15,41 23,39 19,28 28,30 26,18 36,22 37,10 46,16" fill="currentColor" className="opacity-80" />
+                      <circle cx="50" cy="50" r="30" fill="#fdfaf2" />
+                    </svg>
+                    {/* Seal Inner Info */}
+                    <div className="absolute flex flex-col items-center justify-center text-center text-[#0B1F5C] z-10">
+                      <span className="text-[7px] font-black leading-none">APPROVED</span>
+                      <span className="text-[9px] font-black tracking-wider leading-none mt-0.5">★ PAK ★</span>
+                      <span className="text-[7px] font-black leading-none mt-0.5">2671/LHR</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

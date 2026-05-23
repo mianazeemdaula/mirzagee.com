@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ShieldAlert, Award } from "lucide-react";
+import { Award } from "lucide-react";
 
 export default function TrustStrip() {
   return (

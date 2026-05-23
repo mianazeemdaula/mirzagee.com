@@ -176,7 +176,7 @@ export default function WhyChooseUs() {
               </div>
 
               {/* Bottom decorative bar */}
-              <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-accent-gold to-[#4A90D9] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" style={{ position: "absolute", bottom: 0, left: 0, right: 0 }} />
+              <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-accent-gold to-light-blue scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" style={{ position: "absolute", bottom: 0, left: 0, right: 0 }} />
             </motion.div>
           ))}
         </motion.div>
@@ -203,7 +203,7 @@ export default function WhyChooseUs() {
             className="btn-primary"
             style={{ padding: "10px 24px", fontSize: "0.9rem" }}
           >
-            LET'S CONVERSATE
+            LET&apos;S CONVERSATE
           </button>
         </motion.div>
 

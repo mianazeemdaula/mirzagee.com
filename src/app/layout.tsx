@@ -1,18 +1,26 @@
 import type { Metadata, Viewport } from "next";
-import { Rubik } from "next/font/google";
+import { Barlow_Condensed, Nunito_Sans, Amiri } from "next/font/google";
 import "./globals.css";
 
-const rubikDisplay = Rubik({
-  weight: ["400", "500", "600", "700", "800", "900"],
+const barlowCondensed = Barlow_Condensed({
+  weight: ["400", "600", "700", "800", "900"],
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
 });
 
-const rubikBody = Rubik({
-  weight: ["300", "400", "500", "600", "700", "800"],
+const nunitoSans = Nunito_Sans({
+  weight: ["300", "400", "600", "700", "800"],
   subsets: ["latin"],
   variable: "--font-body",
+  display: "swap",
+});
+
+const amiri = Amiri({
+  weight: ["400"],
+  style: ["italic"],
+  subsets: ["arabic"],
+  variable: "--font-arabic",
   display: "swap",
 });
 
@@ -27,7 +35,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-};
+ };
 
 export default function RootLayout({
   children,
@@ -37,9 +45,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${rubikDisplay.variable} ${rubikBody.variable} h-full antialiased`}
+      className={`${barlowCondensed.variable} ${nunitoSans.variable} ${amiri.variable} h-full antialiased`}
     >
       <body>{children}</body>
     </html>
   );
 }
+

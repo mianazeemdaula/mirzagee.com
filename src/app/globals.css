@@ -1,14 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-accent-gold: var(--accent-gold);
+  --color-dark-navy: var(--dark-navy);
+  --color-primary-dark-blue: var(--primary-dark-blue);
+  --color-light-blue: var(--light-blue);
+}
+
 /* ==========================================
    GLOBAL RESET, COLOR VARIABLE TOKENS, SCROLL
    ========================================== */
 
 :root {
   /* Brand Color Palette */
-  --primary-dark-blue: #0A1F6B;
+  --primary-dark-blue: #5599e2;
   --accent-gold: #F5C518;
   --white: #FFFFFF;
-  --light-blue: #4A90D9;
-  --dark-navy: #060E3A;
+  --light-blue: #5599e2;
+  --dark-navy: #0a196d;
   
   /* System Gray Tones */
   --gray-100: #F3F4F6;

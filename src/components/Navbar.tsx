@@ -3,12 +3,15 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, PhoneCall } from "lucide-react";
+import Image from "next/image";
 
 const navLinks = [
   { name: "Home", href: "#home" },
-  { name: "About / Licence", href: "#about" },
-  { name: "Registrations", href: "#registrations" },
+  { name: "About", href: "#about" },
   { name: "Services", href: "#services" },
+  { name: "Process", href: "#process" },
+  { name: "Clients", href: "#clients" },
+  { name: "Team", href: "#team" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -62,33 +65,14 @@ export default function Navbar() {
             }}
             className="nav-brand group"
           >
-            <div className="brand-logo">
-              {/* Globe Icon held by hands (styled via SVG overlay) */}
-              <svg
-                viewBox="0 0 100 100"
-                className="w-10 h-10 text-accent-gold transition-transform duration-700 group-hover:rotate-12"
-              >
-                {/* Globe lines */}
-                <circle cx="50" cy="45" r="26" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3,1" opacity="0.3" className="animate-spin-slow" />
-                <circle cx="50" cy="45" r="22" fill="none" stroke="#4A90D9" strokeWidth="1.5" />
-                <path d="M50,23 A22,22 0 0,0 50,67 Z" fill="none" stroke="#4A90D9" strokeWidth="1.5" />
-                <path d="M50,23 A22,22 0 0,1 50,67 Z" fill="none" stroke="#4A90D9" strokeWidth="1.5" />
-                <line x1="28" y1="45" x2="72" y2="45" stroke="#4A90D9" strokeWidth="1.5" />
-                <line x1="33.5" y1="30" x2="66.5" y2="30" stroke="#4A90D9" strokeWidth="1.2" opacity="0.7" />
-                <line x1="33.5" y1="60" x2="66.5" y2="60" stroke="#4A90D9" strokeWidth="1.2" opacity="0.7" />
-                
-                {/* Hand cradles aligned with globe */}
-                <path
-                  d="M18,55 C25,58 35,63 45,66 C47,67 47,69 44,71 C36,75 26,75 18,70 C16,65 16,60 18,55 Z"
-                  fill="currentColor"
-                  opacity="0.85"
-                />
-                <path
-                  d="M82,55 C75,58 65,63 55,66 C53,67 53,69 56,71 C64,75 74,75 82,70 C84,65 84,60 82,55 Z"
-                  fill="currentColor"
-                  opacity="0.85"
-                />
-              </svg>
+            <div className="brand-logo bg-white">
+              <Image
+                src="/logo.jpg"
+                alt="Mirza Gee Logo"
+                width={48}
+                height={48}
+                className="object-contain transition-transform duration-700 group-hover:scale-110"
+              />
             </div>
 
             <div className="brand-text">
